@@ -1,11 +1,12 @@
 import React, { FC } from "react";
-import { Text, View } from "react-native";
+import Layout from "../layouts";
+import { Text } from "react-native";
 
 const App: FC = () => {
   return (
-    <View>
+    <Layout>
       <Text>Detalles del pokemon</Text>
-    </View>
+    </Layout>
   );
 };
 export default App;
