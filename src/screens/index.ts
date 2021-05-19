@@ -1,5 +1,5 @@
 import Home from "./home";
-import Pokemons from "./pokemon-list";
-import Pokemon from "./pokemon-details";
+import PokemonList from "./pokemon-list";
+import PokemonDetails from "./pokemon-details";
 
-export { Home, Pokemons, Pokemon };
+export { Home, PokemonList, PokemonDetails };
