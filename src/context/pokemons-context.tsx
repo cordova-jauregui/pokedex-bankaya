@@ -2,43 +2,49 @@ import React, { useState, useMemo, useEffect, useContext } from "react";
 import axios from "axios";
 interface iProvider {
   loading: boolean;
-  data: iPokemon[];
+  data: iPokemonInList[];
+  getPokemon: (id: Number) => Promise<iPokemon>;
 }
-interface iPokemon {
-  name: boolean;
-  url: string;
-}
-const PokemonsContext = React.createContext<iProvider>({
-  loading: true,
-  data: [],
-});
+const baseUrl = "https://pokeapi.co/api/v2/";
+const PokemonsContext: any = React.createContext({});
 export function PokemonsProvider(props?: any) {
-  const [data, setData] = useState<iPokemon[]>([]);
+  const [data, setData] = useState<iPokemonInList[]>([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    getPokemon();
+    getPokemons();
   }, []);
-  async function getPokemon(id?: Number) {
+  const getPokemon = async (id: Number) => {
+    try {
+      setLoading(true);
+      const result = await axios.get(`${baseUrl}pokemon/${id}`);
+      setLoading(false);
+      return result.data.results;
+    } catch (err) {
+      alert(`getPokemon ${id}\n${err}`);
+    }
+  };
+  async function getPokemons() {
     const pokemons = data || [];
     try {
       setLoading(true);
-      const result = await axios.get("https://pokeapi.co/api/v2/pokemon");
+      const result = await axios.get(`${baseUrl}pokemon`);
       setLoading(false);
       setData(pokemons.concat(result.data.results));
     } catch (err) {
-      alert(`getPokemon\n${err}`);
+      alert(`getPokemons\n${err}`);
     }
   }
   const value = useMemo(() => {
     return {
       data,
       loading,
+      getPokemon,
     };
-  }, [data, loading]);
+  }, [data, loading, getPokemon]);
   return <PokemonsContext.Provider value={value} {...props} />;
 }
-export function usePokemon() {
-  const context = useContext(PokemonsContext);
+export function usePokemon(): iProvider {
+  const context: iProvider = useContext(PokemonsContext);
   if (!context) {
     throw new Error("'usePokemon' is required");
   }
