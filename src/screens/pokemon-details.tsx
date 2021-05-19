@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import Layout from "../layouts";
-import { Text } from "react-native";
-
-const App: FC = () => {
+import PokeDetails from "../components/pokeDetails";
+const App: FC<iNavigator> = ({ route }) => {
+  const pokemon = (route.params && route.params.pokemon) || {};
   return (
     <Layout>
-      <Text>Detalles del pokemon</Text>
+      <PokeDetails pokemon={pokemon} />
     </Layout>
   );
 };
