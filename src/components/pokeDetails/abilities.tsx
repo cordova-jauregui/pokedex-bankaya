@@ -34,6 +34,7 @@ const App: FC<iProps> = ({ abilities }) => {
       {abilities &&
         abilities.map(({ ability }) => (
           <TouchableOpacity
+            key={ability.name}
             style={styles.button}
             onPress={() => onAbilityPress(ability)}
           >
