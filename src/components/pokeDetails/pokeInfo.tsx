@@ -17,7 +17,7 @@ const App: FC<iPokeInfoProps> = ({ pokemon }) => {
     return (
       <View style={styles.tabContainer}>
         <Text style={styles.subTitle}>General</Text>
-        <TableRow label="Height" text={`${height / 10} cm`} />
+        <TableRow label="Height" text={`${height / 10} m`} />
         <TableRow label="Weight" text={`${weight / 10} kg`} />
         <TableRow label="Abilities">
           <Abilities abilities={abilities} />
