@@ -2,16 +2,31 @@ interface iPokemonInList {
   name: string;
   url: string;
 }
+interface iPokemonType {
+  type: nameAndUrl;
+}
+interface iPokemonStat {
+  base_stat: number;
+  effort: number;
+  stat: nameAndUrl;
+}
+interface iPokemonMove {
+  move: nameAndUrl;
+}
+interface iPokemonAbility {
+  ability: nameAndUrl;
+}
 interface iPokemon {
-  abilities?: { ability: nameAndUrl }[];
+  abilities: iPokemonAbility[];
   base_experience: number;
   height: number;
   id: number;
-  moves?: { move: nameAndUrl }[];
+  moves: iPokemonMove[];
+  stats: iPokemonStat[];
   name: string;
   order: number;
   url: string;
-  types?: { type: nameAndUrl }[];
+  types: iPokemonType[];
   weight: number;
 }
 interface nameAndUrl {

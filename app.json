@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -21,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/poke-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.bankaya.pokedex"
     },
     "web": {
       "favicon": "./assets/poke-favicon.png"

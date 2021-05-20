@@ -10,13 +10,16 @@ const App: FC<iProps> = ({ onPress }) => {
   const [pokemons, setPokemons] = useState<iPokemonInList[]>([]);
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
+  const [threshold, setThreshold] = useState(0);
   useEffect(() => {
-    getPokemons();
+    getPokemons().finally(() => {
+      setThreshold(1);
+    });
   }, [offset]);
 
   const getMorePokemons = () => {
-    console.log("___getMorePokemons", offset + 1);
-    setOffset(offset + 1);
+    if (!loading) console.log("___getMorePokemons", offset + 1, loading);
+    if (!loading) setOffset(offset + 1);
   };
   const getPokemons = async () => {
     try {
@@ -44,7 +47,7 @@ const App: FC<iProps> = ({ onPress }) => {
       ListFooterComponent={renederFooter}
       keyExtractor={(it, i) => `${it.name}${i}`}
       onEndReached={getMorePokemons}
-      onEndReachedThreshold={0.5}
+      onEndReachedThreshold={threshold}
     />
   );
 };

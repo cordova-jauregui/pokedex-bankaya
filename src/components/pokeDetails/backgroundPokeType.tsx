@@ -33,7 +33,7 @@ const App: FC<iProps> = ({ types }) => {
         return require("../../../assets/pokeTypes/grass.jpeg");
       //Etc... etc...
       case undefined:
-        return "";
+        return null;
       default:
         return require("../../../assets/pokeTypes/normal.jpeg");
     }

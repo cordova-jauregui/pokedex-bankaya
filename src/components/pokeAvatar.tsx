@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Avatar } from "react-native-elements";
-const pokeAvatar = ({ id, url }: iProps) => {
+import { View, Image } from "react-native";
+const pokeAvatar = ({ id, url }: iPokeAvatarProps) => {
   let pokemonId = id;
   if (url) {
     const urlSplit = url.split("/");
@@ -8,12 +8,16 @@ const pokeAvatar = ({ id, url }: iProps) => {
   }
   return `https://pokeres.bastionbot.org/images/pokemon/${pokemonId}.png`;
 };
-interface iProps {
-  id?: number;
-  url?: string;
-  size?: number | "small" | "medium" | "large" | "xlarge";
-}
-const App: FC<iProps> = (props) => {
-  return <Avatar size={props.size} source={{ uri: pokeAvatar(props) }} />;
+const App: FC<iPokeAvatarProps> = (props) => {
+  const size = props.size || 40;
+  return (
+    <View style={props.style}>
+      <Image
+        style={{ height: size, width: size }}
+        source={{ uri: pokeAvatar(props) }}
+      />
+      {/* <Avatar size={props.size} source={{ uri: pokeAvatar(props) }} /> */}
+    </View>
+  );
 };
 export default App;
