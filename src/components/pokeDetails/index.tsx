@@ -24,17 +24,15 @@ const App: FC<{ pokemon: iPokemon }> = (props) => {
   };
   return (
     <View>
-      <View>
-        <BackgroudPokeType types={pokemon.types} />
-        <View style={{ ...styles.view }}>
-          <TouchableOpacity></TouchableOpacity>
-          {/* <Text>BACK</Text> */}
-          <View style={styles.avatarView}>
-            <Text style={styles.name}>{pokemon.name}</Text>
-            <PokeAvatar style={styles.avatar} size={200} id={pokemon.id} />
-          </View>
-          <PokeInfo pokemon={pokemon} />
+      <BackgroudPokeType types={pokemon.types} />
+      <View style={{ ...styles.view }}>
+        <TouchableOpacity></TouchableOpacity>
+        {/* <Text>BACK</Text> */}
+        <View style={styles.avatarView}>
+          <Text style={styles.name}>{pokemon.name}</Text>
+          <PokeAvatar style={styles.avatar} size={200} id={pokemon.id} />
         </View>
+        <PokeInfo pokemon={pokemon} />
       </View>
     </View>
   );

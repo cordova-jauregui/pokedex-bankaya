@@ -3,8 +3,6 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { capitalize } from "../../utils";
 import { Overlay } from "react-native-elements";
 import axios from "axios";
-
-// import Icon from "react-native-vector-icons/FontAwesome";
 interface iProps {
   abilities: iPokemonAbility[];
 }
@@ -28,7 +26,6 @@ const App: FC<iProps> = ({ abilities }) => {
     setVisible(true);
     await getAbility(url);
   };
-
   return (
     <View style={styles.view}>
       {abilities &&

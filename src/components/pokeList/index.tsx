@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { Text, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import { Text, FlatList, StyleSheet } from "react-native";
 import Item from "./item";
 import axios from "axios";
 import { apiUrl } from "../../constants";
