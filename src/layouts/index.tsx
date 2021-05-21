@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     right: 10,
     width: 155,
     height: 70,
-    fontSize: 30,
   },
   view: {
     flex: 1,
