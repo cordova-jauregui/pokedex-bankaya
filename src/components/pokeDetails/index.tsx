@@ -4,26 +4,32 @@ import PokeInfo from "./pokeInfo";
 import BackgroudPokeType from "./backgroundPokeType";
 import PokeAvatar from "../pokeAvatar";
 import axios from "axios";
+import LoadingScreen from "../../components/loadingScreen";
 const App: FC<{ pokemon: iPokemon }> = (props) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [pokemon, setPokemon] = useState<iPokemon>({ ...props.pokemon });
   useEffect(() => {
     getPokemon();
   }, []);
   const getPokemon = async () => {
+    let x; //Timer to do a better visual effect
     if (pokemon.url)
       try {
-        setLoading(true);
+        x = setInterval(() => {
+          setLoading(true);
+        }, 50);
         const result = await axios.get(pokemon.url);
         setPokemon(result.data);
       } catch (err) {
         alert(`getPokemons\n${err}`);
       } finally {
         setLoading(false);
+        clearInterval(x);
       }
   };
   return (
     <View>
+      <LoadingScreen active={loading} />
       <BackgroudPokeType types={pokemon.types} />
       <View style={{ ...styles.view }}>
         <TouchableOpacity></TouchableOpacity>

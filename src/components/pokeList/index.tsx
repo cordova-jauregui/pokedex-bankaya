@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
-import { Text, FlatList, StyleSheet } from "react-native";
+import { Text, FlatList, StyleSheet, View } from "react-native";
+import LoadingScreen from "../../components/loadingScreen";
 import Item from "./item";
 import axios from "axios";
 import { apiUrl } from "../../constants";
@@ -41,14 +42,17 @@ const App: FC<iProps> = ({ onPress }) => {
     return loading ? <Text style={styles.loading}>CARGANDO...</Text> : null;
   };
   return (
-    <FlatList
-      data={pokemons}
-      renderItem={renderItem}
-      ListFooterComponent={renederFooter}
-      keyExtractor={(it, i) => `${it.name}${i}`}
-      onEndReached={getMorePokemons}
-      onEndReachedThreshold={threshold}
-    />
+    <View>
+      <LoadingScreen active={loading && offset == 0} />
+      <FlatList
+        data={pokemons}
+        renderItem={renderItem}
+        ListFooterComponent={renederFooter}
+        keyExtractor={(it, i) => `${it.name}${i}`}
+        onEndReached={getMorePokemons}
+        onEndReachedThreshold={threshold}
+      />
+    </View>
   );
 };
 const styles = StyleSheet.create({
