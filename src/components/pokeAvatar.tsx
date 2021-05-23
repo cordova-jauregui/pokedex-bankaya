@@ -11,8 +11,9 @@ const pokeAvatar = ({ id, url }: iPokeAvatarProps) => {
 const App: FC<iPokeAvatarProps> = (props) => {
   const size = props.size || 40;
   return (
-    <View style={props.style}>
+    <View style={props.style} testID="pokeAvatar">
       <Image
+        testID="pokeAvatar-image"
         style={{ height: size, width: size }}
         source={{ uri: pokeAvatar(props) }}
       />

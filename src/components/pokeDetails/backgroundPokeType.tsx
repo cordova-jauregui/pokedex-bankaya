@@ -38,7 +38,13 @@ const App: FC<iProps> = ({ types }) => {
         return require("../../../assets/pokeTypes/normal.jpeg");
     }
   };
-  return <ImageBackground style={styles.background} source={backgroud()} />;
+  return (
+    <ImageBackground
+      testID="pokeDetails-ImageBackground"
+      style={styles.background}
+      source={backgroud()}
+    />
+  );
 };
 const styles = StyleSheet.create({
   background: {

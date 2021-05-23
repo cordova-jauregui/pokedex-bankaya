@@ -36,15 +36,25 @@ const App: FC<iProps> = ({ onPress }) => {
     }
   };
   const renderItem = ({ item }: { item: iPokemonInList }) => {
-    return <Item pokemon={item} onPress={onPress} />;
+    return (
+      <Item
+        pokemon={item}
+        onPress={onPress}
+        testID={`pokeList-item_${item.name}`}
+      />
+    );
   };
   const renederFooter = () => {
     return loading ? <Text style={styles.loading}>CARGANDO...</Text> : null;
   };
   return (
     <View>
-      <LoadingScreen active={loading && offset == 0} />
+      <LoadingScreen
+        testID="pokeList-mainLoading"
+        active={loading && offset == 0}
+      />
       <FlatList
+        testID="pokeList-flatList"
         data={pokemons}
         renderItem={renderItem}
         ListFooterComponent={renederFooter}

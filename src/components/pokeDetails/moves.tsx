@@ -27,7 +27,6 @@ const App: FC<iProps> = ({ moves }) => {
     } finally {
       setLoading(false);
     }
-    console.log("getAbility", url);
   };
   const onMovePress = async ({ url }: nameAndUrl) => {
     setVisible(true);
@@ -39,11 +38,14 @@ const App: FC<iProps> = ({ moves }) => {
         {moves &&
           moves.map(({ move }) => (
             <TouchableOpacity
+              testID={`move-${move.name}`}
               key={move.name}
               style={styles.move}
               onPress={() => onMovePress(move)}
             >
-              <Text>{capitalize(move.name)}</Text>
+              <Text testID={`moveText-${move.name}`}>
+                {capitalize(move.name)}
+              </Text>
             </TouchableOpacity>
           ))}
       </ScrollView>
@@ -56,7 +58,9 @@ const App: FC<iProps> = ({ moves }) => {
       >
         <Text>{loading ? "Loading..." : null}</Text>
         {move &&
-          move.effect_entries.map(({ effect }: any) => <Text>{effect}</Text>)}
+          move.effect_entries.map(({ effect }: any) => (
+            <Text key={`effect_${effect}`}>{effect}</Text>
+          ))}
       </Overlay>
     </View>
   );

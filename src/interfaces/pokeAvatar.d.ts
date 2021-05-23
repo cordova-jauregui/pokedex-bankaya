@@ -3,4 +3,5 @@ interface iPokeAvatarProps {
   url?: string;
   size?: number;
   style?: any;
+  testID?: string;
 }

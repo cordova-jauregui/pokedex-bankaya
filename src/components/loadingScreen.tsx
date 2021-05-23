@@ -1,12 +1,14 @@
 import React, { FC, useEffect, useState } from "react";
 import { Image, StyleSheet } from "react-native";
-import { Overlay, Text } from "react-native-elements";
+import { Overlay } from "react-native-elements";
 interface iProps {
   active: boolean;
+  testID?: string;
 }
-const App: FC<iProps> = ({ active }) => {
+const App: FC<iProps> = ({ active, testID }) => {
   return (
     <Overlay
+      testID={testID}
       overlayStyle={styles.overlay}
       isVisible={active}
       onBackdropPress={() => {

@@ -20,7 +20,6 @@ const App: FC<iProps> = ({ abilities }) => {
     } finally {
       setLoading(false);
     }
-    console.log("getAbility", url);
   };
   const onAbilityPress = async ({ url }: nameAndUrl) => {
     setVisible(true);
@@ -31,22 +30,30 @@ const App: FC<iProps> = ({ abilities }) => {
       {abilities &&
         abilities.map(({ ability }) => (
           <TouchableOpacity
+            testID={`ability_${ability.name}`}
             key={ability.name}
             style={styles.button}
             onPress={() => onAbilityPress(ability)}
           >
-            <Text style={styles.name}>{capitalize(ability.name)}</Text>
+            <Text testID={`abilityText_${ability.name}`} style={styles.name}>
+              {capitalize(ability.name)}
+            </Text>
           </TouchableOpacity>
         ))}
       <Overlay
+        testID="ability_overaly"
         isVisible={visible}
         onBackdropPress={() => {
           setVisible(false);
           setAbility(null);
         }}
       >
-        <Text>{loading ? "Loading..." : null}</Text>
-        <Text>{ability && ability.effect_entries[1].effect}</Text>
+        <Text testID="abilityDetails-loading">
+          {loading ? "Loading..." : null}
+        </Text>
+        <Text testID="abilityDetails-text">
+          {ability && ability.effect_entries[1].effect}
+        </Text>
       </Overlay>
     </View>
   );

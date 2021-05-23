@@ -7,9 +7,17 @@ interface iProps {
 const App: FC<iProps> = ({ label, text, children }) => {
   return (
     <View style={styles.view}>
-      <Text style={styles.label}>{label}</Text>
-      <Text style={styles.text}>{text}</Text>
-      {children ? <View style={styles.children}>{children}</View> : null}
+      <Text style={styles.label} testID="tableRow-label">
+        {label}
+      </Text>
+      <Text style={styles.text} testID="tableRow-text">
+        {text}
+      </Text>
+      {children ? (
+        <View style={styles.children} testID="tableRow-children">
+          {children}
+        </View>
+      ) : null}
     </View>
   );
 };
